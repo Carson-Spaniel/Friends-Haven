@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <!-- Load before anything else to reduce layout shift -->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <script src="{% static 'js/script.js' %}"></script> -->
+
+        <title>{% block title %}{% endblock %}Friends Haven</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main class="main">
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>
