@@ -2,14 +2,22 @@
     --itemHeight: 300px;
 }
 
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
 div.cols{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
-    margin-top: 60px;
+    padding-bottom: 100px;
 }
 
 div.cols div.col{
@@ -23,19 +31,22 @@ div.cols div.col{
     max-width: 50vw;
 }
 
-div.cols div button{
+div.section div button{
     width: 95%;
     /* height: var(--itemHeight);
     min-height: var(--itemHeight); */
     margin: 5px;
     border: 2px black solid;
     box-shadow: 3px 3px 0px black;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
 div.cols button.half{
     height: calc(var(--itemHeight) / 2);
     min-height: calc(var(--itemHeight) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 div.cols a{
@@ -62,13 +73,6 @@ h1{
     width: 100vw;
 }
 
-.half input:active:has(> .half){
-    position: absolute;
-    left: 50%;
-    top: 20px;
-    transform: translate(-50%, -50%);
-}
-
 .item{
     display: flex;
     flex-direction: column;
@@ -79,33 +83,77 @@ h1{
 
 .imgCon{
     width: 100%;
-    border-radius: 5px;
+    border-radius: 2px;
     overflow: clip;
 }
 
 .capCon{
     display: flex;
     justify-content: start;
-    align-items: start;
+    align-items: center;
     padding-top: 5px;
     width: 100%;
 }
 
-.capCon svg{
-    height: 20px;
-    width: 20px;
-    border: 2px solid black;
+.capCon .profilePic {
+    width: 20%;
+    border: 1px solid black;
     border-radius: 50%;
     margin: 5px;
+    max-width: 50px;
+    max-height: 50px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center center;
 }
 
 .itemImg{
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    box-shadow: -2px -2px 0px black inset;
 }
 
 .caption{
     margin: 0;
     width: 80%;
+    color: var(--font-color);
+    text-align: left;
+    padding: 5px;
 }
+
+.post{
+    text-align: center;
+    width: 100%;
+}
+
+.stars{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stars svg{
+    width: 20px;
+    height: 20px;
+}
+
+.item.large{
+    position: absolute;
+    width: 98vw;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 90px 0;
+}
+
+.description{
+    opacity: 1;
+    position: relative;
+}
+
+.description.hidden{
+    opacity: 0;
+    position: absolute;
+}
+

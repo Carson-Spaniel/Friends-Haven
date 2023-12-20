@@ -1,46 +1,15 @@
-:root{
-    --itemHeight: 300px;
-}
-div.cols{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    margin-top: 60px;
-}
-
-div.cols div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    flex-grow: 1;
-    height: 100%;
-    min-width: 125px;
-}
-
-div.cols div button{
-    width: 95%;
-    height: calc(var(--itemHeight) * 1);
-    min-height: calc(var(--itemHeight) * 1);
-    margin: 5px;
+.search{
     border: 2px black solid;
     box-shadow: 3px 3px 0px black;
-    border-radius: 5px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 85vw;
+    margin: 5px;
+    padding: 10px;
 }
 
-div.cols div.colRight{
-    margin-top: calc(var(--itemHeight) * 1);
-}
-
-h1{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    font-size: 47px;
-    width: 100vw;
+.category{
+    height: calc(var(--itemHeight) / 2); 
 }
