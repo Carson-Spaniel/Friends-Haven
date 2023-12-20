@@ -1,3 +1,8 @@
+:root{
+    --background: white;
+    --background-hover: rgb(244, 244, 244);
+}
+
 *{
     font-family: 'Poppins', sans-serif;
 }
@@ -12,6 +17,7 @@ body *, body{
 
 body{
     margin: 0 auto;
+    background-color: var(--background);
 }
 
 footer{
@@ -23,10 +29,10 @@ footer{
     bottom: 0px;
     width: 100%;
     height: 90px;
+    background-color: var(--background);
 }
 
 footer a{
-    background: aliceblue;
     flex-grow: 1;
     height: 100%;
 }
@@ -35,9 +41,16 @@ footer a button{
     width: 100%;
     height: 100%;
     padding: 25px;
+    border: none;
+    background-color: transparent;
 }
 
 footer a button svg{
     height: 100%;
     aspect-ratio: 1;
+}
+
+footer a:hover button{
+    cursor: pointer;
+    background-color: var(--background-hover);
 }
