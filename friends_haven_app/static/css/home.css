@@ -1,6 +1,7 @@
 :root{
     --itemHeight: 300px;
 }
+
 div.cols{
     display: flex;
     flex-direction: row;

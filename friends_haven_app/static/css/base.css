@@ -20,6 +20,10 @@ body{
     background-color: var(--background);
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 footer{
     margin: 0 auto;
     position: fixed;
@@ -51,6 +55,5 @@ footer a button svg{
 }
 
 footer a:hover button{
-    cursor: pointer;
     background-color: var(--background-hover);
 }
