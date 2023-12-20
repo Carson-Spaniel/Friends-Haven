@@ -19,36 +19,20 @@ div.cols div{
     flex-grow: 1;
     height: 100%;
     min-width: 125px;
-    max-width: 50vw;
 }
 
 div.cols div button{
     width: 95%;
-    height: var(--itemHeight);
-    min-height: var(--itemHeight);
+    height: calc(var(--itemHeight) * 1);
+    min-height: calc(var(--itemHeight) * 1);
     margin: 5px;
     border: 2px black solid;
     box-shadow: 3px 3px 0px black;
     border-radius: 5px;
 }
 
-div.cols button.half{
-    height: calc(var(--itemHeight) / 2);
-    min-height: calc(var(--itemHeight) / 2);
-}
-
-div.cols a{
-    width: 95%;
-    margin: 5px;
-}
-
-div.cols a button{
-    width: 100%;
-    margin: unset;
-}
-
-.half svg{
-    max-width: 40px;
+div.cols div.colRight{
+    margin-top: calc(var(--itemHeight) * 1);
 }
 
 h1{
@@ -59,11 +43,4 @@ h1{
     text-align: center;
     font-size: 47px;
     width: 100vw;
-}
-
-.half input:active:has(> .half){
-    position: absolute;
-    left: 50%;
-    top: 20px;
-    transform: translate(-50%, -50%);
 }

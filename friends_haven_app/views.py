@@ -7,5 +7,8 @@ TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates"),'
 )
 
-def index(request):
+def home(request):
     return render(request, 'home.html')
+
+def wander(request):
+    return render(request, 'wander.html')
