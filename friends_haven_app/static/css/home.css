@@ -12,7 +12,7 @@ div.cols{
     margin-top: 60px;
 }
 
-div.cols div{
+div.cols div.col{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,12 +25,12 @@ div.cols div{
 
 div.cols div button{
     width: 95%;
-    height: var(--itemHeight);
-    min-height: var(--itemHeight);
+    /* height: var(--itemHeight);
+    min-height: var(--itemHeight); */
     margin: 5px;
     border: 2px black solid;
     box-shadow: 3px 3px 0px black;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 div.cols button.half{
@@ -69,12 +69,43 @@ h1{
     transform: translate(-50%, -50%);
 }
 
+.item{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 5px;
+}
+
+.imgCon{
+    width: 100%;
+    border-radius: 5px;
+    overflow: clip;
+}
+
+.capCon{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding-top: 5px;
+    width: 100%;
+}
+
+.capCon svg{
+    height: 20px;
+    width: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+    margin: 5px;
+}
+
 .itemImg{
     width: 100%;
-    height: 90%;
+    height: 100%;
     margin: 0 auto;
 }
 
 .caption{
     margin: 0;
+    width: 80%;
 }
