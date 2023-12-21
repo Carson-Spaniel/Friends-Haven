@@ -10,6 +10,14 @@
     padding: 10px;
 }
 
+input.search{
+    box-shadow: 1px 1px 0px black inset;
+}
+
+input.search.submit{
+    width: 20%;
+}
+
 .category{
     height: calc(var(--itemHeight) / 2); 
 }

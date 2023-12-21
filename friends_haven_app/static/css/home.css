@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 60px;
+    margin-top: 35px;
 }
 
 div.cols{
@@ -17,7 +17,6 @@ div.cols{
     justify-content: center;
     /* height: 100vh; */
     width: 100vw;
-    padding-bottom: 100px;
 }
 
 div.cols div.col{
@@ -52,6 +51,8 @@ div.cols button.half{
 div.cols a{
     width: 95%;
     margin: 5px;
+    position: relative;
+    z-index: 10;
 }
 
 div.cols a button{
@@ -65,12 +66,13 @@ div.cols a button{
 
 h1{
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
-    font-size: 47px;
+    font-size: 25px;
     width: 100vw;
+    margin: 0;
 }
 
 .item{
@@ -144,7 +146,8 @@ h1{
     top: 44%;
     left: 50%;
     transform: translate(-50%,-50%);
-    margin: 90px 0;
+    margin: 0;
+    margin-top: 100px;
 }
 
 .description{
