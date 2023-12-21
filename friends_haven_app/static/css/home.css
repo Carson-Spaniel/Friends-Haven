@@ -37,7 +37,7 @@ div.section div button{
     margin: 5px;
     border: 2px black solid;
     box-shadow: 3px 3px 0px black;
-    border-radius: 2px;
+    border-radius: 40px;
 }
 
 div.cols button.half{
@@ -81,12 +81,7 @@ h1{
     justify-content: start;
     align-items: center;
     padding: 5px;
-}
-
-.imgCon{
-    width: 100%;
-    border-radius: 2px;
-    overflow: clip;
+    transition: .5s all ease-out;
 }
 
 .capCon{
@@ -97,7 +92,7 @@ h1{
     width: 100%;
 }
 
-.capCon .profilePic {
+.profilePic {
     width: 20%;
     border: 1px solid black;
     border-radius: 50%;
@@ -114,6 +109,7 @@ h1{
     height: 100%;
     margin: 0 auto;
     box-shadow: -2px -2px 0px black inset;
+    border-radius: 35px;
 }
 
 .caption{
@@ -160,3 +156,6 @@ h1{
     position: absolute;
 }
 
+.section>.cols>.colLeft{
+    margin-top: calc(var(--itemHeight)/2 * -1 - 10px);
+}

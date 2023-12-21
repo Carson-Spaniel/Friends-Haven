@@ -1,0 +1,42 @@
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profilePicTop{
+    width: unset;
+    margin: unset;
+    max-width: 100px;
+    max-height: 100px;
+    border: 2px solid black;
+}
+
+.profTop{
+    padding-top: 10px;
+    width: 100vw;
+}
+
+div.section div button.info{
+    margin: 0 5px;
+    width: 20vw;
+}
+
+.info p{
+    margin: 0;
+}
+
+.profInfo{
+    margin-top: 5px;
+}
+
+hr{
+    width: 90vw;
+}

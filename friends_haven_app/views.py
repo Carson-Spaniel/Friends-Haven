@@ -12,3 +12,6 @@ def home(request):
 
 def wander(request):
     return render(request, 'wander.html')
+
+def profile(request):
+    return render(request, 'profile.html')
