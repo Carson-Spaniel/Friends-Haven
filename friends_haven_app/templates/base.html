@@ -12,10 +12,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <main class="main">
-            <h1>Rate It</h1>
-            {% block content %}{% endblock %}
-        </main>
         <footer>
             <a href="/home">
                 <button id="home">
@@ -33,5 +29,8 @@
                 </button>
             </a>
         </footer>
+        <main class="main">
+            {% block content %}{% endblock %}
+        </main>
     </body>
 </html>

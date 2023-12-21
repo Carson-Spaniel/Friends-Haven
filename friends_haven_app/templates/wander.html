@@ -6,7 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/wander.css' %}">
 </head>
+<script>
+    const active = document.getElementById('wander');
+    active.classList.add("active");
+</script>
 <body>
+    <h1>Rate It</h1>
     <div class="section">
         <div id="search" class="search">
             <input class="search" type="search" placeholder="Search">
