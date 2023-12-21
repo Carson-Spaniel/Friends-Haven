@@ -27,6 +27,7 @@
 div.section div button.info{
     margin: 0 5px;
     width: 20vw;
+    padding: 5px;
 }
 
 .info p{
