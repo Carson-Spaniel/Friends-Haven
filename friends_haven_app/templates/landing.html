@@ -15,7 +15,7 @@
         <main class="main">
             <h1>Rate It</h1>
             <div class="login show">
-                <form action="" method="post" id="login" autocomplete="on"> 
+                <form action="{% url 'login' %}" method="post" id="login" autocomplete="on"> 
                     <h2>Login</h2>
                     {% csrf_token %} 
                     <div class="inputs">
@@ -30,7 +30,7 @@
             </div>
 
             <div class="signup">
-                <form action="" method="post" id="signup" autocomplete="on"> 
+                <form action="{% url 'signup' %}" method="post" id="signup" autocomplete="on"> 
                     <h2>Create Account</h2>
                     {% csrf_token %} 
                     <div class="inputs">

@@ -1,3 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(default=None, null=True)
+    description = models.TextField(max_length=200, default=None, null=True)
+    rates = models.IntegerField(default=None, null=True)
+    idols = models.CharField(max_length=1000,default=None, null=True)
+    fans = models.CharField(max_length=1000,default=None, null=True)
+
+    def __str__(self):
+        return f'{self.user.username}'
