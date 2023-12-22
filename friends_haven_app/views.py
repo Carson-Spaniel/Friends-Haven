@@ -28,10 +28,17 @@ def wander(request):
 @login_required(login_url='/')
 def profile(request):
     userProfile = Profile.objects.get(user=request.user)
+    posts = Post.objects.all().filter(creator=userProfile).order_by('-timestamp')
+
+    left = posts[0::2]
+    right = posts[1::2]
+
     data = {
         'userProfile': userProfile,
+        'left': left,
+        'right': right,
     }
-    print(userProfile.user.username)
+
     return render(request, 'profile.html', data)
 
 def landing(request):
