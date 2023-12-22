@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,7 +24,7 @@ class Post(models.Model):
     item_name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='posts/', default=None, null=True, blank=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    rate = models.DecimalField(default=0, decimal_places=1, max_digits=2)
+    rate = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     caption = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -41,6 +42,9 @@ class Post(models.Model):
 
     # Movie
     Movie_where_to_watch = models.CharField(max_length=5000, default=None, null=True, blank=True)
+
+    # Music
+    artist = models.CharField(max_length=100, default=None, null=True, blank=True)
 
     community_rate = models.IntegerField(default=0)
 

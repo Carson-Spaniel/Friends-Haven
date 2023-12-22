@@ -17,28 +17,7 @@
             <input class="search" type="search" placeholder="Search">
             <input class="search submit" type="submit" value="Find">
         </div>
-        <div class="cols">
-            {% if left %}
-                <div class="colleft col">
-                    {% for category in left %}
-                        <button class="category">
-                            {{ category.name }}
-                        </button>
-                    {% endfor %}
-                </div>
-                <div class="colRight col">
-                    {% for category in right %}
-                        <button class="category">
-                            {{ category.name }}
-                        </button>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="category">
-                    No Categories
-                </div>
-            {% endif %}
-        </div>
+        {% include 'categoryButtons.html' %}
     </div>
 </body>
 {% endblock %}

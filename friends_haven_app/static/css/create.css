@@ -1,0 +1,23 @@
+#createForm{
+    width: 100vw;
+}
+
+.footerButton{
+    height: calc(100% + 3px);
+    border-radius: 0;
+}
+
+.footerAButton{
+    width: unset;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+footer a{
+    text-decoration: none;
+}

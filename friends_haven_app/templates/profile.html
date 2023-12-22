@@ -14,7 +14,11 @@
     <h1>{{ userProfile.user.username}}</h1>
     <div class="section column">
         <div class="profTop column">
-            <img class="profilePicTop profilePic" src="{{ userProfile.profile_picture.url }}" width="100%" height="100%">
+            {% if userProfile.profile_picture %}
+                <img class="profilePicTop profilePic" src="{{ userProfile.profile_picture.url }}" width="100%" height="100%">
+            {% else %}
+                <img class="profilePicTop profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%">
+            {% endif %}
             <div class="profInfo column">
                 <div class="infoTop row">
                     <button class="rate column info">

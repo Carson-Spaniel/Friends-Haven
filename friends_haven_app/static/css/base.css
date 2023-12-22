@@ -42,14 +42,14 @@ footer{
     z-index: 10;
 }
 
-footer a{
+footer a, .footerButton{
     flex-grow: 1;
     height: 100%;
     border: 1px solid black;
     border-top: 2px solid black;
 }
 
-footer a button{
+footer a button, .footerAButton{
     width: 100%;
     height: 100%;
     padding: 15px;

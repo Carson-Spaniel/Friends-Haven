@@ -10,4 +10,5 @@ urlpatterns = [
     path('signup/',views.signupUser, name='signup'),
     path('login/',views.loginUser, name='login'),
     path('logout/',views.logoutUser, name='logout'),
+    path('create-post/',views.createPage, name='createPage'),
 ]

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wander.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
+        <!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+        <title>Create - Rate it</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main class="main">
+            <div class="section">
+                {% include 'categoryButtons.html' %}
+                <form action="" method="post" id="createForm" autocomplete="on"> 
+                    {% csrf_token %} 
+                    <div class="inputs">
+                        <input required type="file" name="image" class="input" placeholder="Upload Image">
+                    </div>
+                    <div class="inputs">
+                        <input required type="text" name="caption" class="input" placeholder="Caption">
+                    </div>
+    
+                    <div class="inputs">
+                        <input required type="text" name="Book" class="input" placeholder="Book">
+                    </div>
+                    <div class="inputs">
+                        <input required type="text" name="Author" class="input" placeholder="Author">
+                    </div>
+    
+                    <div class="inputs">
+                        <input required type="text" name="description" class="input" placeholder="Description">
+                    </div>
+                    <footer>
+                        <a href="/home">
+                            <p id="home" class="footerAButton">
+                                Cancel
+                            </p>
+                        </a>
+                        <input id="upload" class="footerButton" value="Upload" type="submit">
+                    </footer>
+                </form>
+            </div>
+        </main>
+    </body>
+    <script>
+        function change(){
+            const login = document.querySelector('.login');
+            const signup = document.querySelector('.signup');
+            login.classList.toggle('show');
+            signup.classList.toggle('show');
+        }
+    </script>
+</html>

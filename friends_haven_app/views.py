@@ -93,3 +93,13 @@ def logoutUser(request):
     logout(request)
     print('logged out')
     return redirect('/')
+
+def createPage(request):
+    categories = Category.objects.all().order_by('name')
+    left = categories[0::2]
+    right = categories[1::2]
+    data = {
+        'left':left,
+        'right':right
+    }
+    return render(request, 'createPage.html', data)

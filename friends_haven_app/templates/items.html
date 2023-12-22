@@ -6,7 +6,11 @@
                 <button class="item" onclick="enlarge(this)">
                     <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
                     <div class="capCon">
-                        <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
+                        {% if post.creator.profile_picture %}
+                            <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
+                        {% else %}
+                            <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%">
+                        {% endif %}
                         <p class="caption">{{ post.caption }}</p>
                     </div>
                     <div class="stars">
@@ -27,20 +31,7 @@
                         {% endfor %}
                     </div>
                     <div class="description hidden">
-                        {% if post.category.name == 'Books' %}
-                            <h2>Book Name: {{ post.item_name }}</h2>
-                            <h3>Author: {{ post.author }}</h3>
-                        {% elif post.category.name == 'Movies' %}
-                            <h2>Movie Name: {{ post.item_name }}</h2>
-                            <h3>Where to Watch: {{ post.Movie_where_to_watch }}</h3>
-                        {% elif post.category.name == 'TV Shows' %}
-                            <h2>Movie Name: {{ post.item_name }}</h2>
-                            <h3>Where to Watch: {{ post.TV_where_to_watch }}</h3>
-                        {% elif post.category.name == 'Recipes' %}
-                            <h2>Recipe Name: {{ post.item_name }}</h2>
-                            <h3>Ingredients: {{ post.ingredients }}</h3>
-                            <h3>Instructions: {{ post.instructions }}</h3>
-                        {% endif %}
+                        {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
                         <p>Posted {{ post.time_ago }}</p>
                     </div>
@@ -52,7 +43,11 @@
                 <button class="item" onclick="enlarge(this)">
                     <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
                     <div class="capCon">
-                        <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
+                        {% if post.creator.profile_picture %}
+                            <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
+                        {% else %}
+                            <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%">
+                        {% endif %}                        
                         <p class="caption">{{ post.caption }}</p>
                     </div>
                     <div class="stars">
@@ -73,20 +68,7 @@
                         {% endfor %}
                     </div>
                     <div class="description hidden">
-                        {% if post.category.name == 'Books' %}
-                            <h2>Book Name: {{ post.item_name }}</h2>
-                            <h3>Author: {{ post.author }}</h3>
-                        {% elif post.category.name == 'Movies' %}
-                            <h2>Movie Name: {{ post.item_name }}</h2>
-                            <h3>Where to Watch: {{ post.Movie_where_to_watch }}</h3>
-                        {% elif post.category.name == 'TV Shows' %}
-                            <h2>Movie Name: {{ post.item_name }}</h2>
-                            <h3>Where to Watch: {{ post.TV_where_to_watch }}</h3>
-                        {% elif post.category.name == 'Recipes' %}
-                            <h2>Recipe Name: {{ post.item_name }}</h2>
-                            <h3>Ingredients: {{ post.ingredients }}</h3>
-                            <h3>Instructions: {{ post.instructions }}</h3>
-                        {% endif %}
+                        {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
                         <p>Posted {{ post.time_ago }}</p>
                     </div>

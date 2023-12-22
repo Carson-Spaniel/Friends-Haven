@@ -1,0 +1,18 @@
+{% load static %}
+{% if post.category.name == 'Books' %}
+    <h2>Book Name: {{ post.item_name }}</h2>
+    <h3>Author: {{ post.author }}</h3>
+{% elif post.category.name == 'Music' %}
+    <h2>Song Name: {{ post.item_name }}</h2>
+    <h3>Artist: {{ post.artist }}</h3>
+{% elif post.category.name == 'Movies' %}
+    <h2>Movie Name: {{ post.item_name }}</h2>
+    <h3>Where to Watch: {{ post.Movie_where_to_watch }}</h3>
+{% elif post.category.name == 'TV Shows' %}
+    <h2>Movie Name: {{ post.item_name }}</h2>
+    <h3>Where to Watch: {{ post.TV_where_to_watch }}</h3>
+{% elif post.category.name == 'Recipes' %}
+    <h2>Recipe Name: {{ post.item_name }}</h2>
+    <h3>Ingredients: {{ post.ingredients }}</h3>
+    <h3>Instructions: {{ post.instructions }}</h3>
+{% endif %}
