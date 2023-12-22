@@ -18,34 +18,26 @@
             <input class="search submit" type="submit" value="Find">
         </div>
         <div class="cols">
-            <div class="colleft col">
-                <button class="category">
-                    Recipes
-                </button>
-                <button class="category">
-                    Books
-                </button>
-                <button class="category">
-                    Travel
-                </button>
-                <button class="category">
-                    Pets
-                </button>
-            </div>
-            <div class="colRight col">
-                <button class="category">
-                    TV
-                </button>
-                <button class="category">
-                    Movies
-                </button>
-                <button class="category">
-                    Photos
-                </button>
-                <button class="category">
-                    Tech
-                </button>
-            </div>
+            {% if left %}
+                <div class="colleft col">
+                    {% for category in left %}
+                        <button class="category">
+                            {{ category.name }}
+                        </button>
+                    {% endfor %}
+                </div>
+                <div class="colRight col">
+                    {% for category in right %}
+                        <button class="category">
+                            {{ category.name }}
+                        </button>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="category">
+                    No Categories
+                </div>
+            {% endif %}
         </div>
     </div>
 </body>

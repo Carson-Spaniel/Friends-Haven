@@ -16,7 +16,14 @@ def home(request):
 
 @login_required(login_url='/')
 def wander(request):
-    return render(request, 'wander.html')
+    categories = Category.objects.all().order_by('name')
+    left = categories[0::2]
+    right = categories[1::2]
+    data = {
+        'left':left,
+        'right':right
+    }
+    return render(request, 'wander.html', data)
 
 @login_required(login_url='/')
 def profile(request):
