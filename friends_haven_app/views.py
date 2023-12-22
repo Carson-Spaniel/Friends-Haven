@@ -12,7 +12,18 @@ TEMPLATE_DIRS = (
 
 @login_required(login_url='/')
 def home(request):
-    return render(request, 'home.html')
+    userProfile = Profile.objects.get(user=request.user)
+    posts = Post.objects.all().order_by('-timestamp')
+
+    left = posts[0::2]
+    right = posts[1::2]
+
+    data = {
+        'userProfile': userProfile,
+        'left': left,
+        'right': right,
+    }
+    return render(request, 'home.html', data)
 
 @login_required(login_url='/')
 def wander(request):
