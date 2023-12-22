@@ -11,7 +11,7 @@
     active.classList.add("active");
 </script>
 <body>
-    <h1>MyUserName</h1>
+    <h1>{{ userProfile.user.username}}</h1>
     <div class="section column">
         <div class="profTop column">
             <img class="profilePicTop profilePic" src="{% static 'images/test.jpg' %}" width="100%" height="100%">
@@ -19,19 +19,23 @@
                 <div class="infoTop row">
                     <button class="rate column info">
                         <p class="infoName">Rates</p>
-                        <p class="rateNum num">6</p>
+                        <p class="rateNum num">{{ userProfile.rates}}</p>
                     </button>
                     <button class="idol column info">
                         <p class="infoName">Idols</p>
-                        <p class="idolNum num">3</p>
+                        <p class="idolNum num">{{ userProfile.idols}}</p>
                     </button>
                     <button class="fan column info">
                         <p class="infoName">Fans</p>
-                        <p class="fanNum num">10</p>
+                        <p class="fanNum num">{{ userProfile.fans}}</p>
                     </button>
                 </div>
                 <div class="infoBottom row">
-                    <p>This is a short description of my profile!</p>
+                    {% if userProfile.description %}
+                        <p>{{ userProfile.description }}</p>
+                    {% else %}
+                        <p>No Description</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

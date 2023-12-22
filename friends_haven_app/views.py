@@ -20,7 +20,12 @@ def wander(request):
 
 @login_required(login_url='/')
 def profile(request):
-    return render(request, 'profile.html')
+    userProfile = Profile.objects.get(user=request.user)
+    data = {
+        'userProfile': userProfile,
+    }
+    print(userProfile.user.username)
+    return render(request, 'profile.html', data)
 
 def landing(request):
     return render(request, 'landing.html')
