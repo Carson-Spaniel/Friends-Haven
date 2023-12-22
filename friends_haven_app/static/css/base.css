@@ -65,3 +65,15 @@ footer a button svg{
 button.active{
     background-color: rgb(100, 183, 255);
 }
+
+.logout{
+    position: absolute;
+    right: 10px;
+    border: 2px black solid;
+    box-shadow: 3px 3px 0px black;
+    border-radius: 50px;
+    width: 15vw;
+    margin: 5px auto;
+    padding: 5px;
+    z-index: 10;
+}
