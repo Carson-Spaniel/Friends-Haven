@@ -11,3 +11,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+    
+# class Post(models.Model):
+#     image = models.ImageField()
+#     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     rate = models.IntegerField(default=0)
+#     caption = models.CharField(max_length=100)
+#     description = models.TextField(max_length=200)
+
+
