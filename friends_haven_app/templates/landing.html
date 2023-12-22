@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+        <!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+        <title>Rate it</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main class="main">
+            <h1>Rate It</h1>
+            <div class="login show">
+                <form action="" method="post" id="login" autocomplete="on"> 
+                    <h2>Login</h2>
+                    {% csrf_token %} 
+                    <div class="inputs">
+                        <input required type="text" name="username" autocomplete="username" class="input" placeholder="Username">
+                    </div>
+                    <div class="inputs">
+                        <input required type="password" name="password" autocomplete="current-password" class="input" placeholder="Password">
+                    </div>
+                    <input type="submit" value="Login" class="button">
+                </form>
+                <p>Don't have an account? <button onclick="change()" class="button">Create Account</button></p>
+            </div>
+
+            <div class="signup">
+                <form action="" method="post" id="signup" autocomplete="on"> 
+                    <h2>Create Account</h2>
+                    {% csrf_token %} 
+                    <div class="inputs">
+                        <input required type="text" name="username" autocomplete="username" class="input" placeholder="Username">
+                    </div>
+                    <div class="inputs">
+                        <input required type="email" name="email" autocomplete="email" class="input" placeholder="Email">
+                    </div>
+                    <div class="inputs">
+                        <input required type="password" name="password" autocomplete="new-password" class="input" placeholder="Password">
+                    </div>
+                    <div class="inputs">
+                        <input required type="password" name="confirmPassword" autocomplete="new-password" class="input" placeholder="Confirm Password">
+                    </div>
+                    <input type="submit" value="Create" class="button">
+                </form>
+                <p>Have an account? <button onclick="change()" class="button">Login</button></p>
+            </div>
+        </main>
+    </body>
+    <script>
+        function change(){
+            const login = document.querySelector('.login');
+            const signup = document.querySelector('.signup');
+            login.classList.toggle('show');
+            signup.classList.toggle('show');
+        }
+    </script>
+</html>

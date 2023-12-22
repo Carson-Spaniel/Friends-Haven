@@ -1,0 +1,34 @@
+.main{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    width: 100vw;
+    margin-top: 100px;
+}
+
+input.input, .button{
+    border: 2px black solid;
+    box-shadow: 3px 3px 0px black;
+    border-radius: 50px;
+    width: 85vw;
+    margin: 5px auto;
+    padding: 10px;
+}
+
+.button{
+    width: 30vw;
+}
+.login{
+    display: none;
+}
+
+.signup{
+    display: none;
+}
+
+.show{
+    display: block;
+}
