@@ -116,6 +116,7 @@
         const buttons = document.querySelectorAll('.section button');
         const main = document.querySelector('.main');
         const h1 = document.querySelector('h1');
+        const logout = document.querySelector('.logout');
         if(!button.classList.contains('large')){
             buttons.forEach(btn=>{
                 if(btn != button){
@@ -129,6 +130,7 @@
             })
         }
         h1.classList.toggle('large');
+        logout.classList.toggle('large');
         main.classList.toggle('large');
         button.classList.toggle('large');
         desc.classList.toggle('hidden');
