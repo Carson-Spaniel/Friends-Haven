@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.template.defaultfilters import slugify
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,7 +16,15 @@ class Profile(models.Model):
         return f'{self.user.username}'
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null= True)
+    slug = models.SlugField(unique=True, blank=True)
+    sections = models.CharField(max_length=5000, null= True, blank=True)
+
+    def save(self, *args, **kwargs):
+        # Generate the slug from the name
+        self.slug = slugify(self.name)
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.name}'

@@ -15,7 +15,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: 100%;
+    padding: 0;
 }
 
 footer a{
@@ -57,7 +58,7 @@ label {
     display: flex;
     border: 2px black solid;
     box-shadow: 3px 3px 0px black;
-    width: 50vw;
+    width: 40vw;
     justify-content: center;
     align-items: center;
 }

@@ -107,6 +107,8 @@ def logoutUser(request):
 
 def createPage(request):
     categories = Category.objects.all().order_by('name')
+    for category in categories:
+        category.sections = category.sections.replace(', ', ',').split(',')
     left = categories[0::2]
     right = categories[1::2]
     data = {
@@ -114,3 +116,46 @@ def createPage(request):
         'right':right
     }
     return render(request, 'createPage.html', data)
+
+def createCategory(request):
+    category = request.POST.get('category')
+    caption = request.POST.get('caption')
+    description = request.POST.get('description')
+    categoryPost = Category.objects.get(name=category)
+    data = {
+        'sections':categoryPost.sections.replace(', ', ',').split(','),
+        'nextBool':True,
+        'categoryChose':category,
+        'caption':caption,
+        'description':description,
+    }
+    return render(request, 'createPage.html', data)
+
+def createPost(request, category=None):
+    caption = request.POST.get('caption')
+    description = request.POST.get('description')
+    print(caption)
+    print(description)
+    categoryPost = Category.objects.get(slug=category)
+    data = {
+        'sections':categoryPost.sections.replace(', ', ',').split(','),
+        'nextBool':True,
+        'categoryChose':category,
+    }
+    return render(request, 'createPage.html', data)
+
+@login_required(login_url='/')
+def showCategory(request, category=None):
+    print("Category:", category)
+    categoryPost = Category.objects.get(slug=category)
+    posts = Post.objects.all().filter(category=categoryPost).order_by('-timestamp')
+
+    left = posts[0::2]
+    right = posts[1::2]
+
+    data = {
+        'left':left,
+        'right':right,
+        'categoryBool':True,
+    }
+    return render(request, 'wander.html', data)

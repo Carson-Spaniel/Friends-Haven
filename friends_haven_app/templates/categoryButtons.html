@@ -1,23 +1,34 @@
 {% load static %}
-<div class="cols">
-    {% if left %}
-        <div class="colleft col">
-            {% for category in left %}
-                <button class="category">
-                    {{ category.name }}
-                </button>
-            {% endfor %}
-        </div>
-        <div class="colRight col">
-            {% for category in right %}
-                <button class="category">
-                    {{ category.name }}
-                </button>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="category">
-            No Categories
-        </div>
-    {% endif %}
-</div>
+{% if not categoryBool %}
+    <div class="cols">
+        {% if left %}
+            <div class="colleft col">
+                {% for category in left %}
+                <a href="{% url 'showCategory' category.name|slugify %}">
+                    <button class="category">
+                        {{ category.name }}
+                    </button>
+                </a>            
+                {% endfor %}
+            </div>
+            <div class="colRight col">
+                {% for category in right %}
+                <a href="{% url 'showCategory' category.name|slugify %}">
+                    <button class="category">
+                        {{ category.name }}
+                    </button>
+                </a>            
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="category">
+                No Categories
+            </div>
+        {% endif %}
+    </div>
+{% else %}
+    <a href="/wander">
+        <button class="back">Back</button>
+    </a>
+    {% include 'items.html' %}
+{% endif %}
