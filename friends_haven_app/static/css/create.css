@@ -21,3 +21,53 @@
 footer a{
     text-decoration: none;
 }
+
+input{
+    display: unset;
+}
+
+input.hidden{
+    display: none;
+}
+
+.inputs{
+    margin: 10px auto;
+}
+
+.input{
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    border: 2px black solid;
+    box-shadow: 3px 3px 0px black;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+#image{
+    display: none;
+}
+
+label {
+    padding: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 5px auto;
+    display: flex;
+    border: 2px black solid;
+    box-shadow: 3px 3px 0px black;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#previewImage{
+    width: 60vw;
+    margin: 0 auto;
+    display: none;
+    border-radius: 10px;
+    border: 2px black solid;
+    box-shadow: 3px 3px 0px black;
+}
+  

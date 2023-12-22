@@ -16,26 +16,69 @@
     <body>
         <main class="main">
             <div class="section">
-                {% include 'categoryButtons.html' %}
+                <div class="cols">
+                    {% if left %}
+                        <div class="colleft col">
+                            {% for category in left %}
+                                <button class="category" onclick="showContent('{{ category.name }}')">
+                                    {{ category.name }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                        <div class="colRight col">
+                            {% for category in right %}
+                                <button class="category" onclick="showContent('{{ category.name }}')">
+                                    {{ category.name }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="category">
+                            No Categories
+                        </div>
+                    {% endif %}
+                </div>
                 <form action="" method="post" id="createForm" autocomplete="on"> 
                     {% csrf_token %} 
                     <div class="inputs">
-                        <input required type="file" name="image" class="input" placeholder="Upload Image">
+                        <label for="image">Upload Image</label>
+                        <input type="file" name="image" class="input" placeholder="Upload Image" id="image">
+                        <img id="previewImage">
+                        <script>
+                           const imageInput = document.getElementById('image');
+                           const previewImage = document.getElementById('previewImage');
+                           function previewSelectedImage() {
+                            previewImage.style.display = 'flex'
+                              const file = imageInput.files[0];
+                              if (file) {
+                                 const reader = new FileReader();
+                                 reader.readAsDataURL(file);
+                                 reader.onload = function(e) {
+                                    previewImage.src = e.target.result;
+                                 }
+                              }
+                           }
+                           imageInput.addEventListener('change', previewSelectedImage);
+                        </script>
                     </div>
                     <div class="inputs">
                         <input required type="text" name="caption" class="input" placeholder="Caption">
                     </div>
-    
-                    <div class="inputs">
-                        <input required type="text" name="Book" class="input" placeholder="Book">
-                    </div>
-                    <div class="inputs">
-                        <input required type="text" name="Author" class="input" placeholder="Author">
-                    </div>
-    
                     <div class="inputs">
                         <input required type="text" name="description" class="input" placeholder="Description">
                     </div>
+    
+                    <div class="inputs">
+                        <input required type="text" name="" class="input option1 hidden" placeholder="">
+                    </div>
+                    <div class="inputs">
+                        <input required type="text" name="" class="input option2 hidden" placeholder="">
+                    </div>
+                    <div class="inputs">
+                        <input type="text" name="" class="input option3 hidden" placeholder="">
+                    </div>
+                    
+
                     <footer>
                         <a href="/home">
                             <p id="home" class="footerAButton">
@@ -49,11 +92,64 @@
         </main>
     </body>
     <script>
-        function change(){
-            const login = document.querySelector('.login');
-            const signup = document.querySelector('.signup');
-            login.classList.toggle('show');
-            signup.classList.toggle('show');
+        function showContent(category) {
+            const option1 = document.querySelector('.option1');
+            const option2 = document.querySelector('.option2');
+            const option3 = document.querySelector('.option3');
+
+            if (category === 'Books') {
+                option1.classList.remove('hidden');
+                option1.name = 'Book';
+                option1.placeholder = 'Book';
+
+                option2.classList.remove('hidden');
+                option2.name = 'Author';
+                option2.placeholder = 'Author';
+
+                option3.classList.remove('show');
+            } else if (category === 'Movies') {
+                option1.classList.remove('hidden');
+                option1.name = 'Movie';
+                option1.placeholder = 'Movie';
+
+                option2.classList.remove('hidden');
+                option2.name = 'WheretoWatchMove';
+                option2.placeholder = 'Where to Watch';
+
+                option3.classList.remove('show');
+            } else if (category === 'TV Shows') {
+                option1.classList.remove('hidden');
+                option1.name = 'TVShow';
+                option1.placeholder = 'TV Show';
+
+                option2.classList.remove('hidden');
+                option2.name = 'WheretoWatchTV';
+                option2.placeholder = 'Where to Watch';
+
+                option3.classList.add('hidden');
+            }  else if (category === 'Music') {
+                option1.classList.remove('hidden');
+                option1.name = 'Song';
+                option1.placeholder = 'Song';
+
+                option2.classList.remove('hidden');
+                option2.name = 'Artist';
+                option2.placeholder = 'Artist';
+
+                option3.classList.remove('show');
+            } else if (category === 'Recipes') {
+                option1.classList.remove('hidden');
+                option1.name = 'Recipe';
+                option1.placeholder = 'Recipe';
+
+                option2.classList.remove('hidden');
+                option2.name = 'Ingredients';
+                option2.placeholder = 'Ingredients';
+
+                option3.classList.remove('hidden');
+                option3.name = 'Instructions';
+                option3.placeholder = 'Instructions';
+            }
         }
     </script>
 </html>
