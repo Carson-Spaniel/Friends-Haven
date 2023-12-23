@@ -14,4 +14,6 @@ urlpatterns = [
     path('create/',views.createPage, name='createPage'),
     path('create/next/',views.createCategory, name='createCategory'),
     path('create/post/<str:category>',views.createPost, name='createPost'),
+    path('account/<slug:creator>/',views.account, name='account'),
+
 ]

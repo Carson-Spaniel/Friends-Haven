@@ -106,6 +106,7 @@ def logoutUser(request):
     print('logged out')
     return redirect('/')
 
+@login_required(login_url='/')
 def createPage(request):
     categories = Category.objects.all().order_by('name')
     for category in categories:
@@ -118,6 +119,7 @@ def createPage(request):
     }
     return render(request, 'createPage.html', data)
 
+@login_required(login_url='/')
 def createCategory(request):
     category = request.POST.get('category')
     caption = request.POST.get('caption')
@@ -132,6 +134,7 @@ def createCategory(request):
     }
     return render(request, 'createPage.html', data)
 
+@login_required(login_url='/')
 def createPost(request, category=None):
     userProfile = Profile.objects.get(user=request.user)
     caption = request.POST.get('caption')
@@ -180,3 +183,26 @@ def showCategory(request, category=None):
         'categoryBool':True,
     }
     return render(request, 'wander.html', data)
+
+@login_required(login_url='/')
+def account(request, creator=None):
+    if creator != request.user.username:
+        user = User.objects.get(username=creator)
+        anonymous = True
+    else:
+        user = request.user
+        anonymous = False
+    userProfile = Profile.objects.get(user=user)
+    posts = Post.objects.all().filter(creator=userProfile).order_by('-timestamp')
+
+    left = posts[0::2]
+    right = posts[1::2]
+
+    data = {
+        'userProfile': userProfile,
+        'left': left,
+        'right': right,
+        'anonymous': anonymous,
+    }
+
+    return render(request, 'profile.html', data)
