@@ -37,11 +37,11 @@
                     </button>
                     <button class="idol column info">
                         <p class="infoName">Idols</p>
-                        <p class="idolNum num">{{ userProfile.idols}}</p>
+                        <p class="idolNum num">{{ userProfile.idolNum}}</p>
                     </button>
                     <button class="fan column info">
                         <p class="infoName">Fans</p>
-                        <p class="fanNum num">{{ userProfile.fans}}</p>
+                        <p class="fanNum num">{{ userProfile.fanNum}}</p>
                     </button>
                 </div>
                 <div class="infoBottom row">
@@ -53,6 +53,17 @@
                 </div>
             </div>
         </div>
+        {% if anonymous and userProfile.user.username not in accessProfileIdols %}
+            <form action="{% url 'follow' userProfile.user.username %}" method="post"> 
+                {% csrf_token %}
+                <input type="submit" value="Follow">
+            </form>
+        {% elif anonymous %}
+            <form action="{% url 'unfollow' userProfile.user.username %}" method="post"> 
+                {% csrf_token %}
+                <input type="submit" value="Following">
+            </form>
+        {% endif %}
         <hr>
         <div class="rates">
             {% include 'items.html' %}

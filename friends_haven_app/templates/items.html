@@ -8,7 +8,7 @@
                     <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
                     {% endif %}
                     <div class="capCon">
-                        <a href="/account/{{post.creator}}">
+                        <a href="/account/{{post.creator}}" class="profileLink">
                             {% if post.creator.profile_picture %}
                                 <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
                             {% else %}

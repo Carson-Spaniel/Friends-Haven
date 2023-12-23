@@ -14,7 +14,12 @@ TEMPLATE_DIRS = (
 @login_required(login_url='/')
 def home(request):
     userProfile = Profile.objects.get(user=request.user)
-    posts = Post.objects.all().order_by('-timestamp')
+
+    idols = json.loads(userProfile.idols)
+    if idols == 0:
+        idols = []
+    posts = Post.objects.all().filter(creator__user__username__in=idols).order_by('-timestamp')
+    print(posts)
 
     left = posts[0::2]
     right = posts[1::2]
@@ -198,11 +203,69 @@ def account(request, creator=None):
     left = posts[0::2]
     right = posts[1::2]
 
+    accessProfile = Profile.objects.get(user=request.user)
+    accessProfileIdols = json.loads(accessProfile.idols)
+
+    if accessProfileIdols == 0:
+        accessProfileIdols = []
+
     data = {
         'userProfile': userProfile,
         'left': left,
         'right': right,
         'anonymous': anonymous,
+        'accessProfileIdols': accessProfileIdols,
     }
 
     return render(request, 'profile.html', data)
+
+@login_required(login_url='/')
+def follow(request, username):
+    fan = Profile.objects.get(user=request.user)
+    idolUser = User.objects.get(username=username)
+    idol = Profile.objects.get(user=idolUser)
+    try:
+        idols = json.loads(fan.idols)
+        if idols == 0:
+            idols = [str(username)]
+        else:
+            idols = list(idols)
+            idols.append(str(username))
+        fan.idols = json.dumps(idols)
+        fan.idolNum = len(idols)
+        fan.save()
+
+        fans = json.loads(idol.fans)
+        if fans == 0:
+            fans = [str(fan.user.username)]
+        else:
+            fans = list(fans)
+            fans.append(str(fan.user.username))
+        idol.fans = json.dumps(fans)
+        idol.fanNum = len(fans)
+        idol.save()
+    
+    except Exception as e:
+        print(e)
+
+    return redirect(f'/account/{username}')
+
+@login_required(login_url='/')
+def unfollow(request, username):
+    fan = Profile.objects.get(user=request.user)
+    idolUser = User.objects.get(username=username)
+    idol = Profile.objects.get(user=idolUser)
+
+    idols = list(json.loads(fan.idols))
+    idols.remove(str(username))
+    fan.idols = json.dumps(idols)
+    fan.idolNum = len(idols)
+    fan.save()
+
+    fans = list(json.loads(idol.fans))
+    fans.remove(str(fan.user.username))
+    idol.fans = json.dumps(fans)
+    idol.fanNum = len(fans)
+    idol.save()
+
+    return redirect(f'/account/{username}')

@@ -15,5 +15,6 @@ urlpatterns = [
     path('create/next/',views.createCategory, name='createCategory'),
     path('create/post/<str:category>',views.createPost, name='createPost'),
     path('account/<slug:creator>/',views.account, name='account'),
-
+    path('follow/<slug:username>/',views.follow, name='follow'),
+    path('unfollow/<slug:username>/',views.unfollow, name='unfollow'),
 ]

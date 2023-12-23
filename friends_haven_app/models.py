@@ -10,8 +10,11 @@ class Profile(models.Model):
     profile_picture = models.ImageField(upload_to='profilePictures/', default=None, null=True, blank=True)
     description = models.TextField(max_length=200, default=None, null=True, blank=True)
     rates = models.IntegerField(default=0, null=True, blank=True)
+    idolNum = models.IntegerField(default=0, null=True, blank=True)
+    fanNum = models.IntegerField(default=0, null=True, blank=True)
     idols = models.CharField(max_length=50000,default=0, null=True, blank=True)
     fans = models.CharField(max_length=50000,default=0, null=True, blank=True)
+
 
     def __str__(self):
         return f'{self.user.username}'
