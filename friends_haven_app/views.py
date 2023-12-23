@@ -3,6 +3,7 @@ from .models import *
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import json
 
 # Create your views here.
 # Create your views here.
@@ -142,10 +143,14 @@ def createPost(request, category=None):
     for section in sections:
         answers.append(request.POST.get(f'{section}'))
 
-    name = answers.pop(0)
+    name = answers[0]
 
     try:
-        Post.objects.create(item_name=name,creator=userProfile,caption=caption,description=description,category=categoryPost,sections=sections,answers=answers) #! need image, rate
+        post = Post.objects.create(item_name=name,creator=userProfile,caption=caption,description=description,category=categoryPost,sections=json.dumps(sections),answers=json.dumps(answers)) #! need image, rate
+        rate = len(Post.objects.all().filter(creator=userProfile))
+        print(rate)
+        userProfile.rates = rate
+        userProfile.save()
         return redirect('/home/')
     
     except Exception as e:

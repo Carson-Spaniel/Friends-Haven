@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from datetime import datetime, timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.template.defaultfilters import slugify
+import json
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -39,9 +40,15 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True,)
     community_rate = models.IntegerField(default=0)
-    
+
     sections = models.CharField(max_length=5000, null= True, blank=True)
     answers = models.CharField(max_length=5000, null= True, blank=True)
+
+    def getSections(self):
+        return json.loads(self.sections)
+    
+    def getAnswers(self):
+        return json.loads(self.answers)
 
     def time_ago(self):
         current_time = datetime.now(timezone.utc)
