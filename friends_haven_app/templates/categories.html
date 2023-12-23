@@ -2,7 +2,11 @@
 {% for section in post.getSections %}
     {% for answer in post.getAnswers %}
         {% if forloop.counter == forloop.parentloop.counter %}
-            <h3>{{section}}: {{ answer }}</h3>
+            {% if edit %}
+                <h3>{{section}}: <input type="textarea" value="{{ answer }}" name="{{ section }}"></h3>
+            {% else %}
+                <h3>{{section}}: {{ answer }}</h3>
+            {% endif %}
         {% endif %}
     {% endfor %}
 {% endfor %}

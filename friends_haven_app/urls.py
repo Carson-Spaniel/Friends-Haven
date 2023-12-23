@@ -22,4 +22,6 @@ urlpatterns = [
     path('follow/<slug:username>/',views.follow, name='follow'),
     path('unfollow/<slug:username>/',views.unfollow, name='unfollow'),
     path('delete/<int:postId>/',views.deletePost, name='deletePost'),
+    path('edit/<int:postId>/',views.editPost, name='editPost'),
+    path('save/<int:postId>/',views.saveEdit, name='saveEdit'),
 ]

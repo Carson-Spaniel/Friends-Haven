@@ -333,3 +333,33 @@ def deletePost(request, postId):
     userProfile.save()
     return redirect('/profile/')
 
+def editPost(request, postId):
+    post = Post.objects.get(id=postId)
+    data = {
+        'post':post,
+        'edit':True
+    }
+    return render(request, 'editPost.html', data)
+
+def saveEdit(request, postId):
+    post = Post.objects.get(id=postId)
+    start_extracting = False
+    answers = []
+    for key, value in request.POST.items():
+        if key == 'caption':
+            post.caption = value
+            start_extracting = True
+            continue
+        elif key == 'description':
+            post.description = value
+            break
+
+        if start_extracting:
+            answers.append(value)
+
+    name = answers[0]
+    post.item_name = name
+    post.answers = json.dumps(answers)
+    post.save()
+
+    return redirect('/profile/')
