@@ -28,6 +28,7 @@ def home(request):
         'userProfile': userProfile,
         'left': left,
         'right': right,
+        'accessProfile': userProfile
     }
     return render(request, 'home.html', data)
 
@@ -56,6 +57,7 @@ def profile(request):
         'left': left,
         'right': right,
         'profileView': profileView,
+        'accessProfile': userProfile,
     }
 
     return render(request, 'profile.html', data)
@@ -161,7 +163,7 @@ def createPost(request, category=None):
         print(rate)
         userProfile.rates = rate
         userProfile.save()
-        return redirect('/home/')
+        return redirect('/profile/')
     
     except Exception as e:
         print(e)
@@ -178,6 +180,7 @@ def createPost(request, category=None):
 @login_required(login_url='/')
 def showCategory(request, category=None):
     print("Category:", category)
+    userProfile = Profile.objects.get(user=request.user)
     categoryPost = Category.objects.get(slug=category)
     posts = Post.objects.all().filter(category=categoryPost).order_by('-timestamp')
 
@@ -188,11 +191,13 @@ def showCategory(request, category=None):
         'left':left,
         'right':right,
         'categoryBool':True,
+        'accessProfile': userProfile,
     }
     return render(request, 'wander.html', data)
 
 @login_required(login_url='/')
 def account(request, creator=None):
+    userProfile = Profile.objects.get(user=request.user)
     if creator != request.user.username:
         user = User.objects.get(username=creator)
         anonymous = True
@@ -217,6 +222,7 @@ def account(request, creator=None):
         'right': right,
         'anonymous': anonymous,
         'accessProfileIdols': accessProfileIdols,
+        'accessProfile': userProfile,
     }
 
     return render(request, 'profile.html', data)
@@ -317,3 +323,13 @@ def showFans(request, account=None):
         'page':'Fans',
     }
     return render(request, 'showAccountInfo.html', data)
+
+def deletePost(request, postId):
+    userProfile = Profile.objects.get(user=request.user)
+    post = Post.objects.get(id=postId)
+    post.delete()
+    rate = len(Post.objects.all().filter(creator=userProfile))
+    userProfile.rates = rate
+    userProfile.save()
+    return redirect('/profile/')
+

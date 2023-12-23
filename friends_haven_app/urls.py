@@ -21,4 +21,5 @@ urlpatterns = [
     path('account/<slug:account>/fans',views.showFans, name='account'),
     path('follow/<slug:username>/',views.follow, name='follow'),
     path('unfollow/<slug:username>/',views.unfollow, name='unfollow'),
+    path('delete/<int:postId>/',views.deletePost, name='deletePost'),
 ]

@@ -39,6 +39,12 @@
                     <div class="description hidden">
                         {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
+                        {% if accessProfile.user.username == post.creator.user.username %}
+                            <form action="{% url 'deletePost' post.id %}" method="post"> 
+                                {% csrf_token %}
+                                <input type="submit" value="Delete Post">
+                            </form>
+                        {% endif %}
                     </div>
                     <p>Posted {{ post.time_ago }}</p>
                 </button>
@@ -82,6 +88,12 @@
                     <div class="description hidden">
                         {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
+                        {% if accessProfile.user.username == post.creator.user.username %}
+                            <form action="{% url 'deletePost' post.id %}" method="post"> 
+                                {% csrf_token %}
+                                <input type="submit" value="Delete Post">
+                            </form>
+                        {% endif %}
                     </div>
                     <p>Posted {{ post.time_ago }}</p>
                 </button>
