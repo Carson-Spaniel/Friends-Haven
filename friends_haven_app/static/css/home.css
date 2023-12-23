@@ -172,7 +172,7 @@ h1{
     padding: 10px;
 }
 
-h1.large, .logout.large{
+h1.large, .logout.large, .back.large{
     display: none;
 }
 

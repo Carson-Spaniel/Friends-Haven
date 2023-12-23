@@ -132,17 +132,33 @@ def createCategory(request):
     return render(request, 'createPage.html', data)
 
 def createPost(request, category=None):
+    userProfile = Profile.objects.get(user=request.user)
     caption = request.POST.get('caption')
     description = request.POST.get('description')
-    print(caption)
-    print(description)
     categoryPost = Category.objects.get(slug=category)
-    data = {
-        'sections':categoryPost.sections.replace(', ', ',').split(','),
-        'nextBool':True,
-        'categoryChose':category,
-    }
-    return render(request, 'createPage.html', data)
+    sections = categoryPost.sections.replace(', ', ',').split(',')
+
+    answers = []
+    for section in sections:
+        answers.append(request.POST.get(f'{section}'))
+
+    name = answers.pop(0)
+
+    try:
+        Post.objects.create(item_name=name,creator=userProfile,caption=caption,description=description,category=categoryPost,sections=sections,answers=answers) #! need image, rate
+        return redirect('/home/')
+    
+    except Exception as e:
+        print(e)
+
+        data = {
+            'sections':categoryPost.sections.replace(', ', ',').split(','),
+            'nextBool':True,
+            'categoryChose':category,
+            'caption':caption,
+            'description':description,
+        }
+        return render(request, 'createPage.html', data)
 
 @login_required(login_url='/')
 def showCategory(request, category=None):

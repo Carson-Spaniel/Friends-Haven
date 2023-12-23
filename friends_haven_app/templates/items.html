@@ -4,7 +4,9 @@
         <div class="colLeft col">
             {% for post in left %}
                 <button class="item" onclick="enlarge(this)">
+                    {% if post.image %}
                     <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
+                    {% endif %}
                     <div class="capCon">
                         {% if post.creator.profile_picture %}
                             <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
@@ -13,6 +15,7 @@
                         {% endif %}
                         <p class="caption">{{ post.caption }}</p>
                     </div>
+                    {% if post.rate %}
                     <div class="stars">
                         {% for i in "12345" %}                            
                             {% if post.rate >= i|add:0 %}
@@ -30,6 +33,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
+                    {% endif %}
                     <div class="description hidden">
                         {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
@@ -41,7 +45,9 @@
         <div class="colRight col">
             {% for post in right %}
                 <button class="item" onclick="enlarge(this)">
+                    {% if post.image %}
                     <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
+                    {% endif %}
                     <div class="capCon">
                         {% if post.creator.profile_picture %}
                             <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
@@ -50,6 +56,7 @@
                         {% endif %}                        
                         <p class="caption">{{ post.caption }}</p>
                     </div>
+                    {% if post.rate %}
                     <div class="stars">
                         {% for i in "12345" %}                            
                             {% if post.rate >= i|add:0 %}
@@ -67,6 +74,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
+                    {% endif %}
                     <div class="description hidden">
                         {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
@@ -88,6 +96,7 @@
         const main = document.querySelector('.main');
         const h1 = document.querySelector('h1');
         const logout = document.querySelector('.logout');
+        const back = document.querySelector('.back');
         if(!button.classList.contains('large')){
             buttons.forEach(btn=>{
                 if(btn != button){
@@ -102,6 +111,9 @@
         }
         h1.classList.toggle('large');
         logout.classList.toggle('large');
+        if(back){
+            back.classList.toggle('large');
+        }
         main.classList.toggle('large');
         button.classList.toggle('large');
         desc.classList.toggle('hidden');

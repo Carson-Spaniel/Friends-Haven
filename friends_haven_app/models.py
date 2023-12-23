@@ -38,24 +38,10 @@ class Post(models.Model):
     description = models.TextField(max_length=200)
     timestamp = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True,)
-
-    # Recipe
-    ingredients = models.CharField(max_length=5000, default=None, null=True, blank=True)
-    instructions = models.CharField(max_length=5000, default=None, null=True, blank=True)
-
-    # Book
-    author = models.CharField(max_length=100, default=None, null=True, blank=True)
-
-    # TV Show
-    TV_where_to_watch = models.CharField(max_length=5000, default=None, null=True, blank=True)
-
-    # Movie
-    Movie_where_to_watch = models.CharField(max_length=5000, default=None, null=True, blank=True)
-
-    # Music
-    artist = models.CharField(max_length=100, default=None, null=True, blank=True)
-
     community_rate = models.IntegerField(default=0)
+    
+    sections = models.CharField(max_length=5000, null= True, blank=True)
+    answers = models.CharField(max_length=5000, null= True, blank=True)
 
     def time_ago(self):
         current_time = datetime.now(timezone.utc)
