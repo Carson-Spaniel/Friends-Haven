@@ -19,7 +19,6 @@ def home(request):
     if idols == 0:
         idols = []
     posts = Post.objects.all().filter(creator__user__username__in=idols).order_by('-timestamp')
-    print(posts)
 
     left = posts[0::2]
     right = posts[1::2]
@@ -160,7 +159,6 @@ def createPost(request, category=None):
     try:
         post = Post.objects.create(item_name=name,creator=userProfile,caption=caption,description=description,category=categoryPost,sections=json.dumps(sections),answers=json.dumps(answers)) #! need image, rate
         rate = len(Post.objects.all().filter(creator=userProfile))
-        print(rate)
         userProfile.rates = rate
         userProfile.save()
         return redirect('/profile/')
@@ -179,7 +177,6 @@ def createPost(request, category=None):
 
 @login_required(login_url='/')
 def showCategory(request, category=None):
-    print("Category:", category)
     userProfile = Profile.objects.get(user=request.user)
     categoryPost = Category.objects.get(slug=category)
     posts = Post.objects.all().filter(category=categoryPost).order_by('-timestamp')
@@ -363,3 +360,27 @@ def saveEdit(request, postId):
     post.save()
 
     return redirect('/profile/')
+
+def unlikePost(request, postId):
+    post = Post.objects.get(id=postId)
+    likedBy = list(json.loads(post.likedBy))
+    likedBy.remove(str(request.user.username))
+    post.likedBy = json.dumps(likedBy)
+    post.likes = len(likedBy)
+    post.save()
+
+    return redirect('/home/')
+
+def likePost(request, postId):
+    post = Post.objects.get(id=postId)
+    likedBy = json.loads(post.likedBy)
+    if likedBy == 0:
+        likedBy = [str(request.user.username)]
+    else:
+        likedBy = list(likedBy)
+        likedBy.append(str(request.user.username))
+    post.likedBy = json.dumps(likedBy)
+    post.likes = len(likedBy)
+    post.save()
+    
+    return redirect('/home/')

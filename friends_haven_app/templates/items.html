@@ -17,6 +17,18 @@
                         </a>
                         <p class="caption">{{ post.caption }}</p>
                     </div>
+                    <p>{{ post.likes }}</p>
+                    {% if accessProfile.user.username != post.creator.user.username and accessProfile.user.username not in post.likedBy %}
+                        <form action="{% url 'likePost' post.id %}" method="post"> 
+                            {% csrf_token %}
+                            <input type="submit" value="Like">
+                        </form>
+                    {% elif accessProfile.user.username != post.creator.user.username %}
+                        <form action="{% url 'unlikePost' post.id %}" method="post"> 
+                            {% csrf_token %}
+                            <input type="submit" value="Liked">
+                        </form>
+                    {% endif %}
                     {% if post.rate %}
                     <div class="stars">
                         {% for i in "12345" %}                            
@@ -70,6 +82,18 @@
                         </a>                      
                         <p class="caption">{{ post.caption }}</p>
                     </div>
+                    <p>{{ post.likes }}</p>
+                    {% if accessProfile.user.username != post.creator.user.username and accessProfile.user.username not in post.likedBy %}
+                        <form action="{% url 'likePost' post.id %}" method="post"> 
+                            {% csrf_token %}
+                            <input type="submit" value="Like">
+                        </form>
+                    {% elif accessProfile.user.username != post.creator.user.username %}
+                        <form action="{% url 'unlikePost' post.id %}" method="post"> 
+                            {% csrf_token %}
+                            <input type="submit" value="Liked">
+                        </form>
+                    {% endif %}
                     {% if post.rate %}
                     <div class="stars">
                         {% for i in "12345" %}                            

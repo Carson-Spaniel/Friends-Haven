@@ -24,4 +24,6 @@ urlpatterns = [
     path('delete/<int:postId>/',views.deletePost, name='deletePost'),
     path('edit/<int:postId>/',views.editPost, name='editPost'),
     path('save/<int:postId>/',views.saveEdit, name='saveEdit'),
+    path('like/<int:postId>/',views.likePost, name='likePost'),
+    path('unlike/<int:postId>/',views.unlikePost, name='unlikePost'),
 ]

@@ -44,8 +44,14 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True,)
     community_rate = models.IntegerField(default=0)
 
+    likes = models.IntegerField(default=0, null=True, blank=True)
+    likedBy = models.CharField(max_length=50000,default=0, null=True, blank=True)
+
     sections = models.CharField(max_length=5000, null= True, blank=True)
     answers = models.CharField(max_length=5000, null= True, blank=True)
+
+    def getLikes(self):
+        return json.loads(self.likedBy)
 
     def getSections(self):
         return json.loads(self.sections)
