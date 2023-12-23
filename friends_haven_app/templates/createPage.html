@@ -73,11 +73,18 @@
                         </div>                    
 
                         <footer>
-                            <a href="/home">
+                            <button onclick="goBack()" class="footerButtonCreate footerButton">Cancel</button>
+
+                            <script>
+                                function goBack() {
+                                    window.history.go(-1);
+                                }
+                            </script>
+                            <!-- <a href="/home">
                                 <p id="home" class="footerAButton">
                                     Cancel
                                 </p>
-                            </a>
+                            </a> -->
                             <input id="upload" class="footerButton" value="Next" type="submit">
                         </footer>
                     </form>
@@ -95,11 +102,18 @@
                     <input value="{{description}}" type="text" name="description" class="hidden">
 
                     <footer>
-                        <a href="/home">
+                        <button onclick="goBack()" class="footerButtonCreate footerButton">Back</button>
+
+                        <script>
+                            function goBack() {
+                                window.history.go(-1);
+                            }
+                        </script>
+                        <!-- <a href="/home">
                             <p id="home" class="footerAButton">
                                 Cancel
                             </p>
-                        </a>
+                        </a> -->
                         <input id="upload" class="footerButton" value="Submit" type="submit">
                     </footer>
                 </form>

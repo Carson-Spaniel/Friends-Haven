@@ -1,15 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Profile - {% endblock %}
+{% block title %}Account - {% endblock %}
 {% block content %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
 </head>
+{% if not profileView %}
+    <button onclick="goBack()" class="back">Back</button>
+
+    <script>
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
+{% endif %}
+
 {% if anonymous %}
-    <a href="/home">
-        <button class="back">Back</button>
-    </a>
     <script>
         const active1 = document.getElementById('home');
         active1.classList.add("active");
@@ -35,14 +42,33 @@
                         <p class="infoName">Rates</p>
                         <p class="rateNum num">{{ userProfile.rates}}</p>
                     </button>
-                    <button class="idol column info">
-                        <p class="infoName">Idols</p>
-                        <p class="idolNum num">{{ userProfile.idolNum}}</p>
-                    </button>
-                    <button class="fan column info">
-                        <p class="infoName">Fans</p>
-                        <p class="fanNum num">{{ userProfile.fanNum}}</p>
-                    </button>
+                    {% if anonymous %}
+                        <a href="/account/{{userProfile.user.username}}/idols">
+                            <button class="idol column info">
+                                <p class="infoName">Idols</p>
+                                <p class="idolNum num">{{ userProfile.idolNum}}</p>
+                            </button>
+                        </a>
+                        <a href="/account/{{userProfile.user.username}}/fans">
+                            <button class="fan column info">
+                                <p class="infoName">Fans</p>
+                                <p class="fanNum num">{{ userProfile.fanNum}}</p>
+                            </button>
+                        </a>
+                    {% else %}
+                        <a href="/profile/idols">
+                            <button class="idol column info">
+                                <p class="infoName">Idols</p>
+                                <p class="idolNum num">{{ userProfile.idolNum}}</p>
+                            </button>
+                        </a>
+                        <a href="/profile/fans">
+                            <button class="fan column info">
+                                <p class="infoName">Fans</p>
+                                <p class="fanNum num">{{ userProfile.fanNum}}</p>
+                            </button>
+                        </a>
+                    {% endif %}
                 </div>
                 <div class="infoBottom row">
                     {% if userProfile.description %}

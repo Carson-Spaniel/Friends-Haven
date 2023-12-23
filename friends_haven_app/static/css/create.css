@@ -2,21 +2,14 @@
     width: 100vw;
 }
 
-.footerButton{
-    height: calc(100% + 3px);
-    border-radius: 0;
+.footerButtonCreate{
+    height: 100%;
+    padding: 15px;
+    background-color: transparent;
 }
 
-.footerAButton{
-    width: unset;
-    margin: 0 auto;
-    text-align: center;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 0;
+.footerButton{
+    border-radius: 0;
 }
 
 footer a{

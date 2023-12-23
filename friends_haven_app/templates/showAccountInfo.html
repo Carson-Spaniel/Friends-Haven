@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Account - {% endblock %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
+{% if anonymous %}
+    <script>
+        const active1 = document.getElementById('home');
+        active1.classList.add("active");
+    </script>
+{% else %}
+    <script>
+        const active = document.getElementById('profile');
+        active.classList.add("active");
+    </script>
+{% endif %}
+<body>
+    <button onclick="goBack()" class="back">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
+    <h1>{{page}}</h1>
+    <div class="section">
+        {% if profiles %}
+            {% for profile in profiles %}
+                <a href="/account/{{profile.user.username}}" class="profileLink">
+                    {% if profile.profile_picture %}
+                        <img class="profilePic" src="{{ profile.profile_picture.url }}" width="100%" height="100%">
+                    {% else %}
+                        <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%">
+                    {% endif %}
+                </a>
+                <p>{{ profile.user.username }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No {{ page }}</p>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

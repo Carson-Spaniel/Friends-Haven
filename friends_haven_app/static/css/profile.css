@@ -38,6 +38,10 @@ div.section div button.info{
     margin-top: 5px;
 }
 
+.profInfo a{
+    text-decoration: none;
+}
+
 hr{
     width: 90vw;
 }

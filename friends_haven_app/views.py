@@ -44,6 +44,7 @@ def wander(request):
 
 @login_required(login_url='/')
 def profile(request):
+    profileView = True
     userProfile = Profile.objects.get(user=request.user)
     posts = Post.objects.all().filter(creator=userProfile).order_by('-timestamp')
 
@@ -54,6 +55,7 @@ def profile(request):
         'userProfile': userProfile,
         'left': left,
         'right': right,
+        'profileView': profileView,
     }
 
     return render(request, 'profile.html', data)
@@ -269,3 +271,49 @@ def unfollow(request, username):
     idol.save()
 
     return redirect(f'/account/{username}')
+
+def showIdols(request, account=None):
+    if account:
+        idolUser = User.objects.get(username=account)
+        anonymous = True
+    else:
+        idolUser = request.user
+        anonymous = False
+    
+    user = Profile.objects.get(user=idolUser)
+    idols = json.loads(user.idols)
+    if idols == 0:
+        idols = []
+
+    profiles = Profile.objects.all().filter(user__username__in=idols).order_by('user')
+
+    data = {
+        'anonymous':anonymous,
+        'profiles':profiles,
+        'account':account,
+        'page':'Idols',
+    }
+    return render(request, 'showAccountInfo.html', data)
+
+def showFans(request, account=None):
+    if account:
+        fanUser = User.objects.get(username=account)
+        anonymous = True
+    else:
+        fanUser = request.user
+        anonymous = False
+
+    user = Profile.objects.get(user=fanUser)
+    fans = json.loads(user.fans)
+    if fans == 0:
+        fans = []
+
+    profiles = Profile.objects.all().filter(user__username__in=fans).order_by('user')
+
+    data = {
+        'anonymous':anonymous,
+        'profiles':profiles,
+        'account':account,
+        'page':'Fans',
+    }
+    return render(request, 'showAccountInfo.html', data)
