@@ -4,6 +4,9 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
+from .forms import PostForm
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
 # Create your views here.
 # Create your views here.
@@ -132,6 +135,7 @@ def createCategory(request):
     category = request.POST.get('category')
     caption = request.POST.get('caption')
     description = request.POST.get('description')
+
     categoryPost = Category.objects.get(name=category)
     data = {
         'sections':categoryPost.sections.replace(', ', ',').split(','),
@@ -147,6 +151,11 @@ def createPost(request, category=None):
     userProfile = Profile.objects.get(user=request.user)
     caption = request.POST.get('caption')
     description = request.POST.get('description')
+    image = request.FILES.get('image')
+    fs = FileSystemStorage(location=settings.MEDIA_ROOT / 'posts')
+    filename = fs.save(image.name, image)
+    
+    # Grab the file again
     categoryPost = Category.objects.get(slug=category)
     sections = categoryPost.sections.replace(', ', ',').split(',')
 
@@ -157,7 +166,7 @@ def createPost(request, category=None):
     name = answers[0]
 
     try:
-        post = Post.objects.create(item_name=name,creator=userProfile,caption=caption,description=description,category=categoryPost,sections=json.dumps(sections),answers=json.dumps(answers)) #! need image, rate
+        post = Post.objects.create(item_name=name, image=f'posts/{filename}',creator=userProfile,caption=caption,description=description,category=categoryPost,sections=json.dumps(sections),answers=json.dumps(answers)) #! need image, rate
         rate = len(Post.objects.all().filter(creator=userProfile))
         userProfile.rates = rate
         userProfile.save()

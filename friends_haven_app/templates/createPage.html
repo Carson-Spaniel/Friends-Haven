@@ -17,38 +17,60 @@
         <main class="main">
             <div class="section">
                 {% if not nextBool %}
-                    <form action="{% url 'createCategory' %}" method="post" id="createForm" autocomplete="on"> 
-                        {% csrf_token %}
-                        <p>Select the category of your post:</p>
-                        <div class="cols">
-                            {% if left %}
-                                <div class="colleft col">
-                                    {% for category in left %}
-                                        <label>
-                                            <input type="radio" name="category" value="{{category.name}}" required>
-                                            {{category.name}}
-                                        </label>
-                                    {% endfor %}
-                                </div>
-                                <div class="colRight col">
-                                    {% for category in right %}
-                                        <label>
-                                            <input type="radio" name="category" value="{{category.name}}" required>
-                                            {{category.name}}
-                                        </label>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                <div class="category">
-                                    No Categories
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="inputs">
-                            <label for="image">Upload Image</label>
-                            <input type="file" name="image" class="input" placeholder="Upload Image" id="image" required>
-                            <img id="previewImage">
-                            <script>
+                <form action="{% url 'createCategory' %}" method="post" id="createForm" autocomplete="on" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    <p>Select the category of your post:</p>
+                    <div class="cols">
+                        {% if left %}
+                            <div class="colleft col">
+                                {% for category in left %}
+                                    <label>
+                                        <input type="radio" name="category" value="{{category.name}}" required>
+                                        {{category.name}}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                            <div class="colRight col">
+                                {% for category in right %}
+                                    <label>
+                                        <input type="radio" name="category" value="{{category.name}}" required>
+                                        {{category.name}}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="category">
+                                No Categories
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="inputs">
+                        <input required type="text" name="caption" class="input" placeholder="Caption">
+                    </div>
+                    <div class="inputs">
+                        <input required type="text" name="description" class="input" placeholder="Description">
+                    </div>                    
+                
+                    <footer>
+                        <button onclick="goBack()" class="footerButtonCreate footerButton">Cancel</button>
+                
+                        <script>
+                            function goBack() {
+                                window.history.go(-1);
+                            }
+                        </script>
+                        <input id="upload" class="footerButton" value="Next" type="submit">
+                    </footer>
+                </form>
+                {% else %}
+                <p>Posting in {{categoryChose}}.</p>
+                <form action="{% url 'createPost' categoryChose|slugify%}" method="post" id="createForm" autocomplete="on" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    <div class="inputs">
+                        <label for="image">Upload Image</label>
+                        <input type="file" name="image" class="input" placeholder="Upload Image" id="image" required>
+                        <img id="previewImage">
+                        <script>
                             const imageInput = document.getElementById('image');
                             const previewImage = document.getElementById('previewImage');
                             function previewSelectedImage() {
@@ -63,60 +85,28 @@
                                 }
                             }
                             imageInput.addEventListener('change', previewSelectedImage);
-                            </script>
-                        </div>
-                        <div class="inputs">
-                            <input required type="text" name="caption" class="input" placeholder="Caption">
-                        </div>
-                        <div class="inputs">
-                            <input required type="text" name="description" class="input" placeholder="Description">
-                        </div>                    
-
-                        <footer>
-                            <button onclick="goBack()" class="footerButtonCreate footerButton">Cancel</button>
-
-                            <script>
-                                function goBack() {
-                                    window.history.go(-1);
-                                }
-                            </script>
-                            <!-- <a href="/home">
-                                <p id="home" class="footerAButton">
-                                    Cancel
-                                </p>
-                            </a> -->
-                            <input id="upload" class="footerButton" value="Next" type="submit">
-                        </footer>
-                    </form>
-                {% else %}
-                <p>Posting in {{categoryChose}}.</p>
-                <form action="{% url 'createPost' categoryChose|slugify%}" method="post" id="createForm" autocomplete="on"> 
-                    {% csrf_token %}
-
+                        </script>
+                    </div>
+                
                     {% for section in sections %}
                         <div class="inputs">
                             <input required type="text" name="{{section}}" class="input" placeholder="{{section}}">
-                        </div>  
+                        </div>
                     {% endfor %}
-                    <input value="{{caption}}" type="text" name="caption" class="hidden">      
-                    <input value="{{description}}" type="text" name="description" class="hidden">
-
+                    <input value="{{caption}}" type="hidden" name="caption">
+                    <input value="{{description}}" type="hidden" name="description">
+                    
                     <footer>
                         <button onclick="goBack()" class="footerButtonCreate footerButton">Back</button>
-
+                
                         <script>
                             function goBack() {
                                 window.history.go(-1);
                             }
                         </script>
-                        <!-- <a href="/home">
-                            <p id="home" class="footerAButton">
-                                Cancel
-                            </p>
-                        </a> -->
                         <input id="upload" class="footerButton" value="Submit" type="submit">
                     </footer>
-                </form>
+                </form>                
                 {% endif %}
             </div>
         </main>
