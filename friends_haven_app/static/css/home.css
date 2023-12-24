@@ -211,3 +211,17 @@ h1.large, .logout.large, .back.large{
     color: black;
     width: 80vw;
 }
+
+.postStuff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postStuff *{
+    margin: 0 5px;
+}
+
+.postStuff input{
+    width: 30vw;
+}

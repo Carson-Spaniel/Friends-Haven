@@ -14,7 +14,8 @@ main{
     position: absolute;
     top: 0;
     width: 100vw;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 body *, body{

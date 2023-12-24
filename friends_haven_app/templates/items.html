@@ -63,14 +63,16 @@
                         {% include 'categories.html' %}
                         <p>{{ post.description }}</p>
                         {% if accessProfile.user.username == post.creator.user.username %}
-                            <form action="{% url 'editPost' post.id %}" method="post"> 
-                                {% csrf_token %}
-                                <input type="submit" value="Edit Post">
-                            </form>    
-                            <form action="{% url 'deletePost' post.id %}" method="post"> 
-                                {% csrf_token %}
-                                <input type="submit" value="Delete Post">
-                            </form>
+                            <div class="postStuff">
+                                <form action="{% url 'deletePost' post.id %}" method="post"> 
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete Post">
+                                </form>
+                                <form action="{% url 'editPost' post.id %}" method="post"> 
+                                    {% csrf_token %}
+                                    <input type="submit" value="Edit Post">
+                                </form>
+                            </div>
                         {% endif %}
                     </div>
                     <p>Posted {{ post.time_ago }}</p>
@@ -139,14 +141,16 @@
                     {% include 'categories.html' %}
                     <p>{{ post.description }}</p>
                     {% if accessProfile.user.username == post.creator.user.username %}
-                        <form action="{% url 'editPost' post.id %}" method="post"> 
-                            {% csrf_token %}
-                            <input type="submit" value="Edit Post">
-                        </form>    
-                        <form action="{% url 'deletePost' post.id %}" method="post"> 
-                            {% csrf_token %}
-                            <input type="submit" value="Delete Post">
-                        </form>
+                        <div class="postStuff">
+                            <form action="{% url 'deletePost' post.id %}" method="post"> 
+                                {% csrf_token %}
+                                <input type="submit" value="Delete Post">
+                            </form>
+                            <form action="{% url 'editPost' post.id %}" method="post"> 
+                                {% csrf_token %}
+                                <input type="submit" value="Edit Post">
+                            </form>
+                        </div>
                     {% endif %}
                 </div>
                 <p>Posted {{ post.time_ago }}</p>
