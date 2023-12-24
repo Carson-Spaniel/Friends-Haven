@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.template.defaultfilters import slugify
 import json
@@ -63,13 +63,21 @@ class Post(models.Model):
         current_time = datetime.now(timezone.utc)
         time_difference = current_time - self.timestamp.replace(tzinfo=timezone.utc)
 
-        # Extracting hours, minutes, and seconds from the time difference
+        weeks, days = divmod(time_difference.days, 7)
         hours, remainder = divmod(time_difference.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
 
-        if hours == 1:
+        if weeks == 1:
+            return f"{weeks} week ago"
+        elif weeks > 1:
+            return f"{weeks} weeks ago"
+        elif days == 1:
+            return f"{days} day ago"
+        elif days > 1:
+            return f"{days} days ago"
+        elif hours == 1:
             return f"{hours} hour ago"
-        if hours > 1:
+        elif hours > 1:
             return f"{hours} hours ago"
         elif minutes == 1:
             return f"{minutes} minute ago"

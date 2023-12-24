@@ -45,3 +45,16 @@ div.section div button.info{
 hr{
     width: 90vw;
 }
+
+input{
+    border: 2px black solid;
+    box-shadow: 3px 3px 0px black;
+    border-radius: 10px;
+    width: 20vw;
+    height: 40px;
+    cursor: pointer;
+}
+
+.following{
+    background-color: rgb(100, 183, 255);
+}

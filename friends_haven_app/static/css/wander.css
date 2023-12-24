@@ -33,3 +33,8 @@ div.category{
     justify-content: center;
     align-items: center;
 }
+
+div.cols a button{
+    margin: 5px 0;
+    color: black;
+}

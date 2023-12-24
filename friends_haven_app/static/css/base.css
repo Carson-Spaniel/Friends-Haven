@@ -86,3 +86,7 @@ button.active{
     justify-content: center;
     align-items: center;
 }
+
+button *{
+    color: black;
+}

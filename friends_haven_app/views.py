@@ -219,7 +219,7 @@ def account(request, creator=None):
         'right': right,
         'anonymous': anonymous,
         'accessProfileIdols': accessProfileIdols,
-        'accessProfile': userProfile,
+        'accessProfile': accessProfile,
     }
 
     return render(request, 'profile.html', data)
@@ -289,12 +289,19 @@ def showIdols(request, account=None):
         idols = []
 
     profiles = Profile.objects.all().filter(user__username__in=idols).order_by('user')
+    accessProfile = Profile.objects.get(user=request.user)
+    accessProfileIdols = json.loads(accessProfile.idols)
+
+    if accessProfileIdols == 0:
+        accessProfileIdols = []
 
     data = {
         'anonymous':anonymous,
         'profiles':profiles,
         'account':account,
         'page':'Idols',
+        'accessProfileIdols': accessProfileIdols,
+        'accessProfile': accessProfile,
     }
     return render(request, 'showAccountInfo.html', data)
 
