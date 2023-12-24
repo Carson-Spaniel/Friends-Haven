@@ -233,8 +233,13 @@ div.cols a button.create{
 
 a.create{
     text-decoration: none;
+    margin: 0 auto;
 }
 
 button.create svg{
     max-width: 40px;
+}
+
+.profileDivider {
+    width: 80%;
 }
