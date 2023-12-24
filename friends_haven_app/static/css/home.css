@@ -225,3 +225,16 @@ h1.large, .logout.large, .back.large{
 .postStuff input{
     width: 30vw;
 }
+
+div.cols a button.create{
+    width: 90vw;
+    margin: 5px auto;
+}
+
+a.create{
+    text-decoration: none;
+}
+
+button.create svg{
+    max-width: 40px;
+}
