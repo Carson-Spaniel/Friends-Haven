@@ -4,7 +4,6 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
-from .forms import PostForm
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
@@ -133,16 +132,12 @@ def createPage(request):
 @login_required(login_url='/')
 def createCategory(request):
     category = request.POST.get('category')
-    caption = request.POST.get('caption')
-    description = request.POST.get('description')
 
     categoryPost = Category.objects.get(name=category)
     data = {
         'sections':categoryPost.sections.replace(', ', ',').split(','),
         'nextBool':True,
         'categoryChose':category,
-        'caption':caption,
-        'description':description,
     }
     return render(request, 'createPage.html', data)
 
@@ -151,11 +146,12 @@ def createPost(request, category=None):
     userProfile = Profile.objects.get(user=request.user)
     caption = request.POST.get('caption')
     description = request.POST.get('description')
+    rate = request.POST.get('rate')
     image = request.FILES.get('image')
+
     fs = FileSystemStorage(location=settings.MEDIA_ROOT / 'posts')
     filename = fs.save(image.name, image)
     
-    # Grab the file again
     categoryPost = Category.objects.get(slug=category)
     sections = categoryPost.sections.replace(', ', ',').split(',')
 
@@ -166,7 +162,7 @@ def createPost(request, category=None):
     name = answers[0]
 
     try:
-        post = Post.objects.create(item_name=name, image=f'posts/{filename}',creator=userProfile,caption=caption,description=description,category=categoryPost,sections=json.dumps(sections),answers=json.dumps(answers)) #! need image, rate
+        post = Post.objects.create(item_name=name, image=f'posts/{filename}',creator=userProfile, rate=rate, caption=caption,description=description,category=categoryPost,sections=json.dumps(sections),answers=json.dumps(answers)) #! need image, rate
         rate = len(Post.objects.all().filter(creator=userProfile))
         userProfile.rates = rate
         userProfile.save()
@@ -179,8 +175,6 @@ def createPost(request, category=None):
             'sections':categoryPost.sections.replace(', ', ',').split(','),
             'nextBool':True,
             'categoryChose':category,
-            'caption':caption,
-            'description':description,
         }
         return render(request, 'createPage.html', data)
 
@@ -370,8 +364,10 @@ def saveEdit(request, postId):
         if start_extracting:
             answers.append(value)
 
+    rate = request.POST.get('rate')
     name = answers[0]
     post.item_name = name
+    post.rate = rate
     post.answers = json.dumps(answers)
     post.save()
 

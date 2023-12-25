@@ -43,13 +43,7 @@
                                 No Categories
                             </div>
                         {% endif %}
-                    </div>
-                    <div class="inputs">
-                        <input required type="text" name="caption" class="input" placeholder="Caption">
-                    </div>
-                    <div class="inputs">
-                        <input required type="text" name="description" class="input" placeholder="Description">
-                    </div>                    
+                    </div>                
                 
                     <footer>
                         <button onclick="goBack()" class="footerButtonCreate footerButton">Cancel</button>
@@ -87,14 +81,20 @@
                             imageInput.addEventListener('change', previewSelectedImage);
                         </script>
                     </div>
+                    {% include 'stars.html' %}
+                    
+                    <div class="inputs">
+                        <input required type="text" name="caption" class="input" placeholder="Caption">
+                    </div>
+                    <div class="inputs">
+                        <input required type="text" name="description" class="input" placeholder="Description">
+                    </div>
                 
                     {% for section in sections %}
                         <div class="inputs">
                             <input required type="text" name="{{section}}" class="input" placeholder="{{section}}">
                         </div>
                     {% endfor %}
-                    <input value="{{caption}}" type="hidden" name="caption">
-                    <input value="{{description}}" type="hidden" name="description">
                     
                     <footer>
                         <button onclick="goBack()" class="footerButtonCreate footerButton">Back</button>
