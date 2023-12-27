@@ -412,5 +412,6 @@ def search(request):
     data = {
         'profiles':profiles,
         'search':True,
+        'page': f'results for "{search}"'
     }
     return render(request, 'wander.html', data)
