@@ -26,4 +26,5 @@ urlpatterns = [
     path('save/<int:postId>/',views.saveEdit, name='saveEdit'),
     path('like/<int:postId>/',views.likePost, name='likePost'),
     path('unlike/<int:postId>/',views.unlikePost, name='unlikePost'),
+    path('search/',views.search, name='search'),
 ]

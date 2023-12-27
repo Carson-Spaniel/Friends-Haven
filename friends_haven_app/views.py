@@ -396,3 +396,21 @@ def likePost(request, postId):
     post.save()
     
     return redirect('/home/')
+
+def search(request):
+    userProfile = Profile.objects.get(user=request.user)
+    search = request.POST.get('search')
+    posts = Post.objects.all().filter(item_name__icontains=search).order_by('-timestamp')
+
+    left = posts[0::2]
+    right = posts[1::2]
+
+    data = {
+        'left':left,
+        'right':right,
+        'categoryBool':True,
+        'accessProfile': userProfile,
+        'search':True
+    }
+
+    return render(request, 'wander.html', data)

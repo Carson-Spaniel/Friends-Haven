@@ -18,10 +18,13 @@
 <body>
     <h1>Rate It</h1>
     <div class="section">
-        <div id="search" class="search">
-            <input class="search" type="search" placeholder="Search">
-            <input class="search submit" type="submit" value="Find">
-        </div>
+        <form action="{% url 'search' %}" method="post"> 
+            {% csrf_token %}
+            <div id="search" class="search">
+                <input class="search" type="search" placeholder="Search" name="search">
+                <input class="search submit" type="submit" value="Find">
+            </div>
+        </form>
         {% include 'categoryButtons.html' %}
     </div>
 </body>
