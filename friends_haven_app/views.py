@@ -399,7 +399,6 @@ def likePost(request, postId):
     return redirect('/home/')
 
 def search(request):
-    userProfile = Profile.objects.get(user=request.user)
     search = request.POST.get('search')
 
     profiles = Profile.objects.all().filter(user__username__icontains=search).order_by('user')
