@@ -12,12 +12,6 @@
 <body>
     <button onclick="goBack()" class="back">Back</button>
 
-    <script>
-        function goBack() {
-            window.history.go(-1);
-        }
-    </script>
-
     <div class="section">
         <div class="item large">
             <form action="{% url 'saveEdit' post.id %}" method="post"> 

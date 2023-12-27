@@ -18,12 +18,6 @@
 {% endif %}
 <body>
     <button onclick="goBack()" class="back">Back</button>
-
-    <script>
-        function goBack() {
-            window.history.go(-1);
-        }
-    </script>
     <h1>{{page}}</h1>
     {% include 'profiles.html' %}
 </body>
