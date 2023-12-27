@@ -123,11 +123,10 @@ def createPage(request):
     categories = Category.objects.all().order_by('name')
     for category in categories:
         category.sections = category.sections.replace(', ', ',').split(',')
-    left = categories[0::2]
-    right = categories[1::2]
+    # left = categories[0::2]
+    # right = categories[1::2]
     data = {
-        'left':left,
-        'right':right
+        'categories': categories
     }
     return render(request, 'createPage.html', data)
 

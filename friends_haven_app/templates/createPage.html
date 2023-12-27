@@ -21,23 +21,23 @@
                     {% csrf_token %}
                     <p>Select the category of your post:</p>
                     <div class="cols">
-                        {% if left %}
+                        {% if categories %}
                             <div class="colleft col">
-                                {% for category in left %}
+                                {% for category in categories %}
                                     <label>
                                         <input type="radio" name="category" value="{{category.name}}" required>
                                         {{category.name}}
                                     </label>
                                 {% endfor %}
                             </div>
-                            <div class="colRight col">
+                            <!-- <div class="colRight col">
                                 {% for category in right %}
                                     <label>
                                         <input type="radio" name="category" value="{{category.name}}" required>
                                         {{category.name}}
                                     </label>
                                 {% endfor %}
-                            </div>
+                            </div> -->
                         {% else %}
                             <div class="category">
                                 No Categories
