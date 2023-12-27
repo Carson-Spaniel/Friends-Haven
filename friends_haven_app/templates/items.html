@@ -5,7 +5,7 @@
             {% for post in left %}
                 <button class="item" onclick="enlarge(this)">
                     {% if post.image %}
-                    <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
+                    <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%" loading="lazy">
                     {% endif %}
                     <div class="likes">
                         <p>{{ post.likes }}</p>
@@ -32,9 +32,9 @@
                     <div class="capCon">
                         <a href="/account/{{post.creator}}" class="profileLink">
                             {% if post.creator.profile_picture %}
-                                <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
+                                <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%" loading="lazy">
                             {% else %}
-                                <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%">
+                                <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%" loading="lazy">
                             {% endif %}
                         </a>
                         <p class="caption">{{ post.caption }}</p>
@@ -82,7 +82,7 @@
             {% for post in right %}
             <button class="item" onclick="enlarge(this)">
                 {% if post.image %}
-                <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%">
+                <img class="itemImg" src="{{ post.image.url }}" width="100%" height="100%" loading="lazy">
                 {% endif %}
                 <div class="likes">
                     <p>{{ post.likes }}</p>
@@ -109,9 +109,9 @@
                 <div class="capCon">
                     <a href="/account/{{post.creator}}" class="profileLink">
                         {% if post.creator.profile_picture %}
-                            <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%">
+                            <img class="profilePic" src="{{ post.creator.profile_picture.url }}" width="100%" height="100%" loading="lazy">
                         {% else %}
-                            <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%">
+                            <img class="profilePic" src="{% static 'images/default.jpg' %}" width="100%" height="100%" loading="lazy">
                         {% endif %}
                     </a>
                     <p class="caption">{{ post.caption }}</p>
