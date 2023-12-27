@@ -25,7 +25,14 @@
                 <input class="search submit" type="submit" value="Find">
             </div>
         </form>
-        {% include 'categoryButtons.html' %}
+        {% if search %}
+            <a href="/wander">
+                <button class="back">Back</button>
+            </a>
+            {% include 'profiles.html' %}
+        {% else %}
+            {% include 'categoryButtons.html' %}
+        {% endif %}
     </div>
 </body>
 {% endblock %}

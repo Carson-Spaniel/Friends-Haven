@@ -36,11 +36,13 @@ def home(request):
 @login_required(login_url='/')
 def wander(request):
     categories = Category.objects.all().order_by('name')
-    left = categories[0::2]
-    right = categories[1::2]
+    # left = categories[0::2]
+    # right = categories[1::2]
+        # 'left':left,
+        # 'right':right
     data = {
-        'left':left,
-        'right':right
+
+        'categories':categories,
     }
     return render(request, 'wander.html', data)
 
@@ -400,17 +402,16 @@ def likePost(request, postId):
 def search(request):
     userProfile = Profile.objects.get(user=request.user)
     search = request.POST.get('search')
-    posts = Post.objects.all().filter(item_name__icontains=search).order_by('-timestamp')
 
-    left = posts[0::2]
-    right = posts[1::2]
+    profiles = Profile.objects.all().filter(user__username__icontains=search).order_by('user')
+    accessProfile = Profile.objects.get(user=request.user)
+    accessProfileIdols = json.loads(accessProfile.idols)
+
+    if accessProfileIdols == 0:
+        accessProfileIdols = []
 
     data = {
-        'left':left,
-        'right':right,
-        'categoryBool':True,
-        'accessProfile': userProfile,
-        'search':True
+        'profiles':profiles,
+        'search':True,
     }
-
     return render(request, 'wander.html', data)
