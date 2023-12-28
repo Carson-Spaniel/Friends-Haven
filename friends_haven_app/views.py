@@ -8,7 +8,6 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
 # Create your views here.
-# Create your views here.
 TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates"),'
 )
@@ -36,10 +35,6 @@ def home(request):
 @login_required(login_url='/')
 def wander(request):
     categories = Category.objects.all().order_by('name')
-    # left = categories[0::2]
-    # right = categories[1::2]
-        # 'left':left,
-        # 'right':right
     data = {
 
         'categories':categories,
@@ -123,8 +118,6 @@ def createPage(request):
     categories = Category.objects.all().order_by('name')
     for category in categories:
         category.sections = category.sections.replace(', ', ',').split(',')
-    # left = categories[0::2]
-    # right = categories[1::2]
     data = {
         'categories': categories
     }
