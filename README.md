@@ -14,7 +14,7 @@ I created this platform for mobile devices and not a web version. Most of my pre
 - **Profile:** Users can customize their profile by being able to change the profile picture and description. They can also see how many rates they have made, idols they are following, and how many fans they have.
 - **Wander Page:** A place where users can search up other users, or filter all posts to only see specific topics.
 
-- **Edit/delete Posts:**Even after you have created your post you can go back and edit some parts of the post. You can also delete the post.
+- **Edit/delete Posts:** Even after you have created your post you can go back and edit some parts of the post. You can also delete the post.
 
 ## Future Development
 
